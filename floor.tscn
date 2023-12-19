@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdftl7dpf3vk4"]
+
+[ext_resource type="Material" uid="uid://b0ilpipd1jagb" path="res://Assets/Windmill_Village/SnowVillage_Pack/Materials/Plant.material" id="1_mhwep"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tkg2n"]
+size = Vector3(300, 0.5, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1jf2"]
+size = Vector3(300, 0.5, 300)
+
+[node name="Floor" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_mhwep")
+mesh = SubResource("BoxMesh_tkg2n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t1jf2")
