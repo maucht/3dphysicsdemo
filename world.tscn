@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://b17asr5h6e8po"]
+
+[ext_resource type="PackedScene" uid="uid://b2x0mropkwfce" path="res://Assets/Windmill_Village/Environoment_Pack/OBJS/Anthurium.obj" id="1_2w5im"]
+[ext_resource type="Material" uid="uid://b0ilpipd1jagb" path="res://Assets/Windmill_Village/SnowVillage_Pack/Materials/Plant.material" id="1_allpx"]
+[ext_resource type="Shader" path="res://SkyShader.gdshader" id="3_x5xqm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tkg2n"]
+size = Vector3(300, 0.5, 300)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdc37"]
+shader = ExtResource("3_x5xqm")
+shader_parameter/skyColor = Color(0, 0.760784, 1, 1)
+
+[sub_resource type="Sky" id="Sky_eaqg2"]
+sky_material = SubResource("ShaderMaterial_cdc37")
+
+[sub_resource type="Environment" id="Environment_a1skr"]
+background_mode = 2
+sky = SubResource("Sky_eaqg2")
+
+[node name="World" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.946283, 0.323339, 0, -0.323339, 0.946284, 0.10141, 3.79989, 3.41332)
+fov = 90.0
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = ExtResource("1_allpx")
+mesh = SubResource("BoxMesh_tkg2n")
+
+[node name="Anthurium" parent="." instance=ExtResource("1_2w5im")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.355287, 0.934757, 0, -0.934758, 0.355287, 0, 340.141, 19.7494)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a1skr")
